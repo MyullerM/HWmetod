@@ -8,7 +8,6 @@ public class Main {
         }
         return checkLeapYear;
     }
-
     public static String checkVerPril(int year, int clientOS) {
         String checkVerPril = "";
         if (year <= 2015) {
@@ -26,7 +25,6 @@ public class Main {
         }
         return checkVerPril;
     }
-
     public static String amountOfDays(int distance) {
         String day = "";
         if (distance < 20) {
@@ -41,7 +39,6 @@ public class Main {
         return day;
     }
     public static void main(String[] args) {
-
         System.out.println("Задание 1");
         int year = 2024;
         System.out.println(year + checkLeapYear(year));
