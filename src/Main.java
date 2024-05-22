@@ -1,3 +1,6 @@
+import java.sql.SQLOutput;
+import java.time.LocalDate;
+
 public class Main {
     public static String checkLeapYear(int year) {
         String checkLeapYear = " год не является високосным";
@@ -8,22 +11,24 @@ public class Main {
         }
         return checkLeapYear;
     }
-    public static String checkVerPril(int year, int clientOS) {
-        String checkVerPril = "";
+
+    public static String suggestAppVersionBasedOnYearAndOS(int year, int clientOS) {
+        int currentYear = LocalDate.now().getYear();
+        String suggestAppVersionBasedOnYearAndOS = "";
         if (year <= 2015) {
-            if (clientOS == 0) {
-                checkVerPril = "Установите облегченную версию приложения для iOS по ссылке";
+            if (clientOS == 1 && currentYear > 2015) {
+                suggestAppVersionBasedOnYearAndOS = "Установите облегченную версию приложения для iOS по ссылке";
             } else {
-                checkVerPril = "Установите облегченную версию приложения для Android по ссылке";
+                suggestAppVersionBasedOnYearAndOS = "Установите облегченную версию приложения для Android по ссылке";
             }
         } else {
             if (clientOS == 0) {
-                checkVerPril = "Установите версию приложения для iOS по ссылке";
+                suggestAppVersionBasedOnYearAndOS = "Установите версию приложения для iOS по ссылке";
             } else {
-                checkVerPril = "Установите версию приложения для Android по ссылке";
+                suggestAppVersionBasedOnYearAndOS = "Установите версию приложения для Android по ссылке";
             }
         }
-        return checkVerPril;
+        return suggestAppVersionBasedOnYearAndOS;
     }
     public static String amountOfDays(int distance) {
         String day = "";
@@ -44,8 +49,8 @@ public class Main {
         System.out.println(year + checkLeapYear(year));
         System.out.println("Задание 2");
         int clientDeviceYear = 2015;
-        byte clientOS = 0;
-        System.out.println(checkVerPril(clientDeviceYear, clientOS));
+        int clientOS = 0;
+        System.out.println(suggestAppVersionBasedOnYearAndOS(clientDeviceYear, clientOS));
         System.out.println("Задание 3");
         byte deliveryDistance = 95;
         System.out.println("Потребуется дней: " + amountOfDays(deliveryDistance));
