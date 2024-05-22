@@ -1,7 +1,10 @@
-import java.sql.SQLOutput;
 import java.time.LocalDate;
 
 public class Main {
+    {
+        printCardDeliveryDays(95);
+        printCardDeliveryDays(900);
+    }
     public static String checkLeapYear(int year) {
         String checkLeapYear = " год не является високосным";
         if (year < 1584) {
@@ -30,19 +33,29 @@ public class Main {
         }
         return suggestAppVersionBasedOnYearAndOS;
     }
-    public static String amountOfDays(int distance) {
-        String day = "";
-        if (distance < 20) {
-            day = "1";
-        } else if (distance >= 20 && distance < 60) {
-            day = "2";
-        } else if (distance >= 60 && distance < 100) {
-            day = "3";
+
+    private static int amountOfDays(int distance) {
+        if (distance <= 20) {
+            return 1;
+        } else if (distance <= 60) {
+            return 2;
+        } else if (distance <= 100) {
+            return 3;
         } else {
-            day = "Доставки нет ";
+            return -1;
         }
-        return day;
     }
+
+    private static void printCardDeliveryDays(int distance) {
+        int days = amountOfDays(distance);
+
+        if (days > 0) {
+            System.out.println("Потребуется дней: " + days);
+        } else {
+            System.out.println("Доставка не осуществляется");
+        }
+    }
+
     public static void main(String[] args) {
         System.out.println("Задание 1");
         int year = 2024;
@@ -52,7 +65,8 @@ public class Main {
         int clientOS = 0;
         System.out.println(suggestAppVersionBasedOnYearAndOS(clientDeviceYear, clientOS));
         System.out.println("Задание 3");
-        byte deliveryDistance = 95;
+        int deliveryDistance = 95;
         System.out.println("Потребуется дней: " + amountOfDays(deliveryDistance));
+        ;
     }
 }
