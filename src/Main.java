@@ -30,17 +30,18 @@ public class Main {
         return suggestAppVersionBasedOnYearAndOS;
     }
 
-    private static int amountOfDays(int distance) {
-        if (distance <= 20) {
-            return 1;
-        } else if (distance <= 60) {
-            return 2;
-        } else if (distance <= 100) {
-            return 3;
-        } else {
-            return -1;
+    public static int amountOfDays(int distance) {
+        int deliveryTime = 0;
+        if (distance < 20) {
+            deliveryTime = 1;
+        } else if (distance >= 20 && distance < 60) {
+            deliveryTime = 2;
+        } else if (distance >= 60 && distance <= 100) {
+            deliveryTime = 3;
         }
+        return deliveryTime;
     }
+
     public static void main(String[] args) {
         System.out.println("Задание 1");
         int year = 2024;
@@ -50,8 +51,15 @@ public class Main {
         int clientOS = 0;
         System.out.println(suggestAppVersionBasedOnYearAndOS(clientDeviceYear, clientOS));
         System.out.println("Задание 3");
-        int deliveryDistance = 95;
-        System.out.println("Потребуется дней: " + amountOfDays(deliveryDistance));
-        ;
+        int distance = 95;
+        String days = "день";
+        String message = "Срок доставки:%d %s\n";
+        if (amountOfDays(distance) > 1 && amountOfDays(distance) < 5) {
+            days = "дня";
+        } else if (distance > 100) {
+            message = "Доставка не осуществляется";
+        }
+        System.out.printf(message, amountOfDays(distance), days);
     }
 }
+
